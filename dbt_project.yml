@@ -27,8 +27,8 @@ clean-targets:         # directories to be removed by `dbt clean`
   - "target"
   - "dbt_packages"
 
-on-run-start: "insert into demo_db.public.dbt_audits (audit_type) values ('run_start'); commit;"
-on-run-end: "insert into demo_db.public.dbt_audits (audit_type) values ('run_end'); commit;"
+on-run-start: "{{ insert_audits('run_start') }}"
+on-run-end: "{{ insert_audits('run_end') }}"
 
 # Configuring models
 # Full documentation: https://docs.getdbt.com/docs/configuring-models
@@ -37,8 +37,8 @@ on-run-end: "insert into demo_db.public.dbt_audits (audit_type) values ('run_end
 # as tables. These settings can be overridden in the individual model files
 # using the `{{ config(...) }}` macro.
 models:
-  pre-hook: "insert into demo_db.public.dbt_audits (audit_type) values ('model_start'); commit;"
-  post-hook: "insert into demo_db.public.dbt_audits (audit_type) values ('model_end'); commit;"
+  pre-hook: "{{ insert_audits('model_start') }}"
+  post-hook: "{{ insert_audits('model_start') }}"
   demo_dbt:
     # Config indicated by + and applies to all files under models/staging/
     staging:
