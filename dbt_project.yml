@@ -27,6 +27,8 @@ clean-targets:         # directories to be removed by `dbt clean`
   - "target"
   - "dbt_packages"
 
+on-run-start: "insert into demo_db.public.dbt_audits (audit_type) values ('run_start'); commit;"
+on-run-end: "insert into demo_db.public.dbt_audits (audit_type) values ('run_end'); commit;"
 
 # Configuring models
 # Full documentation: https://docs.getdbt.com/docs/configuring-models
