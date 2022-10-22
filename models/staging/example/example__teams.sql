@@ -27,6 +27,11 @@ with teams as (
     select
         'Bulls' as team
 
+    union all
+
+    select
+        'Celtics' as team
+
 )
 
 select * from teams
