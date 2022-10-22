@@ -1,0 +1,24 @@
+version: 2
+
+sources:
+  - name: super_fave
+    database: demo_db
+    schema: public
+    freshness:
+      warn_after:
+        count: 10
+        period: minute
+      error_after:
+        count: 15
+        period: minute
+      filter: datediff('day', created_at, current_timestamp) < 2
+    loaded_at_field: created_at
+
+
+    tables:
+      - name: super_fave
+        description: "Awesome table for practicing freshness"
+        columes:
+          - name: id
+          - name: name
+          - name: created_at
