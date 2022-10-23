@@ -2,6 +2,10 @@
     query_tag = 'demo_dbt_tag'
 ) }}
 
+{{ config(
+    tags=["special"]
+) }}
+
 with teams as (
 
     select
