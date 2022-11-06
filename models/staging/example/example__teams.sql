@@ -6,6 +6,10 @@
     tags=["special"]
 ) }}
 
+{{ config(
+    materialized='ephemeral'
+) }}
+
 with teams as (
 
     select
